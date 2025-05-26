@@ -24,7 +24,6 @@
 [ Add technical context here ]
 
 # Dependencies
-
 [ Add any dependencies that may be required ]
 
 # How to test
