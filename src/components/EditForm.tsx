@@ -21,13 +21,15 @@ export const EditTodoForm: React.FC<EditTodoFormProps> = ({ editTodo, task }) =>
 
   return (
     <form onSubmit={handleSubmit} className="TodoForm">
-      <input
-        type="text"
-        value={value}
-        onChange={handleChange}
-        className="todo-input"
-        placeholder="Update Task..."
-      />
+      <div className="input-wrapper">
+        <input
+         type='text'
+          value={value}
+          onChange={handleChange}
+          className="todo-update"
+          placeholder="Update Task..."
+        />
+      </div>
       <button type="submit" className="todo-btn">Save Task</button>
     </form>
   );
