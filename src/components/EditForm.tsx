@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import type { FormEvent} from 'react';
+import type { FormEvent } from 'react';
 import type { TodoItem } from '@/types/todo.types';
 
 interface EditTodoFormProps {
@@ -12,21 +12,27 @@ export const EditTodoForm: React.FC<EditTodoFormProps> = ({ editTodo, task }) =>
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!value.trim()) {
+      return; 
+    }
     editTodo(value.trim(), task.id);
   };
-  
+
   return (
     <form onSubmit={handleSubmit} className="TodoForm">
       <div className="input-wrapper">
         <input
-         type='text'
+          type='text'
           value={value}
           onChange={(e) => setValue(e.target.value)}
           className="todo-update"
           placeholder="Update Task..."
+          autoFocus
         />
       </div>
-      <button type="submit" className="todo-btn">Save Task</button>
+      <button type="submit" className="todo-btn" disabled={!value.trim()}>
+        Save Task
+      </button>
     </form>
   );
 }
