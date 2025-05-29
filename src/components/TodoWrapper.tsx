@@ -6,8 +6,8 @@ import { EditTodoForm } from "./EditForm";
 import type { TodoItem } from "../types/todo.types";
 
 export default function TodoWrapper() {
-  const [todos, setTodos] = useState<TodoItem[]>([]);
-  const [searchTerm, setSearchTerm] = useState<string>("");
+  const [todos, setTodos] = useState<Array<TodoItem>>([]);
+  const [searchTerm, setSearchTerm] = useState("");
   const [filter, setFilter] = useState<"all" | "completed" | "incompleted">("all");
 
   const addTodo = (todo: string): void => {
@@ -26,11 +26,12 @@ export default function TodoWrapper() {
     setTodos(todos.filter((todo) => todo.id !== id));
   };
 
-
   const editTodo = (id: string): void => {
     setTodos(
       todos.map((todo) =>
-        todo.id === id ? { ...todo, isEditing: !todo.isEditing } : todo
+        todo.id === id && !todo.completed
+          ? { ...todo, isEditing: !todo.isEditing }
+          : todo
       )
     );
   };
@@ -51,11 +52,11 @@ export default function TodoWrapper() {
     );
   };
 
-  const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
   };
 
-  const handleFilterChange = (e: ChangeEvent<HTMLSelectElement>) => {
+  const handleFilter = (e: ChangeEvent<HTMLSelectElement>) => {
     setFilter(e.target.value as "all" | "completed" | "incompleted");
   };
 
@@ -79,12 +80,12 @@ export default function TodoWrapper() {
             className="search-input"
             placeholder="Search tasks..."
             value={searchTerm}
-            onChange={handleSearchChange}
+            onChange={handleSearch}
           />
 
           <select
             value={filter}
-            onChange={handleFilterChange}
+            onChange={handleFilter}
             className="filter-dropdown"
             aria-label="Filter tasks"
           >
