@@ -23,6 +23,7 @@ export default function TodoForm({ addTodo }: TodoFormProps) {
   return (
     <form onSubmit={handleSubmit} className="TodoForm">
       <input
+      contentEditable="true"
         type="text"
         value={value}
         onChange={handleChange}
