@@ -21,7 +21,7 @@ export const Todo: React.FC<TodoProps> = ({ task, deleteTodo, editTodo, toggleCo
         aria-label={`Mark task "${task.task}" as completed`}
       />
 
-      <p className={task.completed ? "completed" : "incompleted"} style={{ flexGrow: 1, margin: 0 }}>
+      <p className={task.completed ? "completed" : "incompleted"}>
         {task.task}
       </p>
 
