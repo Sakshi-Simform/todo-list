@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import type { FormEvent, ChangeEvent } from 'react';
 
 interface TodoFormProps {
   addTodo: (task: string) => void;
@@ -8,7 +7,7 @@ interface TodoFormProps {
 export default function TodoForm({ addTodo }: TodoFormProps) {
   const [value, setValue] = useState<string>("");
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (value.trim()) {
       addTodo(value.trim());
@@ -16,17 +15,12 @@ export default function TodoForm({ addTodo }: TodoFormProps) {
     }
   };
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setValue(e.target.value);
-  };
-
   return (
     <form onSubmit={handleSubmit} className="TodoForm">
       <input
-      contentEditable="true"
         type="text"
         value={value}
-        onChange={handleChange}
+        onChange={(e) => setValue(e.target.value)} 
         className="todo-input"
         placeholder="Add Task"
       />
