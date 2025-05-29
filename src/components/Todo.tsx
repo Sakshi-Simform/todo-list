@@ -12,22 +12,33 @@ export interface TodoProps {
 export const Todo: React.FC<TodoProps> = ({ task, deleteTodo, editTodo, toggleComplete }) => {
   return (
     <div className="Todo">
-      <div onClick={() => toggleComplete(task.id)} style={{ cursor: 'pointer' }}>
-        <p className={task.completed ? "completed" : "incompleted"}>
-          {task.task}
-        </p>
-      </div>
+      
+      {/*Checkbox to toggle completed */}
+      <input
+        type="checkbox"
+        checked={task.completed}
+        onChange={() => toggleComplete(task.id)}
+        aria-label={`Mark task "${task.task}" as completed`}
+      />
+
+      <p className={task.completed ? "completed" : "incompleted"} style={{ flexGrow: 1, margin: 0 }}>
+        {task.task}
+      </p>
 
       <div>
-        <FontAwesomeIcon
-          className="edit-icon"
-          icon={faPenToSquare}
-          onClick={() => editTodo(task.id)}
-        />
+        {!task.completed && (
+          <FontAwesomeIcon
+            className="edit-icon"
+            icon={faPenToSquare}
+            onClick={() => editTodo(task.id)}
+            style={{ cursor: "pointer", marginRight: "10px" }}
+          />
+        )}
         <FontAwesomeIcon
           className="delete-icon"
           icon={faTrash}
           onClick={() => deleteTodo(task.id)}
+          style={{ cursor: "pointer" }}
         />
       </div>
     </div>
