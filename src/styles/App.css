@@ -57,13 +57,30 @@ body {
 
 .TodoWrapper {
   background: var(--primary-color);
-  padding: 2rem;
   border-radius: 5px;
-  -webkit-box-shadow: 0 0 1.0714rem rgba(0, 0, 0, 0.1);
   box-shadow: 0 0 1.0714rem rgba(0, 0, 0, 0.1);
+  width: 90vw;
+  max-width: 52rem;
   max-height: 30rem;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 0; 
+}
+
+.fixed-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: var(--primary-color);
+  padding: 1rem 2rem 0 2rem;
+  flex-shrink: 0;
+}
+
+.task-scroll-area {
   overflow-y: auto;
-  min-width: 600px;
+  padding: 1.5rem 2rem;
+  flex-grow: 1;
 }
 
 .TodoForm {
@@ -136,7 +153,7 @@ body {
   background: none;
   border: 1px solid var(--secondry-color);
   padding: 0.5rem 1rem;
-  width: 438px;
+  width: 38rem;
   border-radius: 4px;
   color: var(--white-color);
   font-size: 1rem;
@@ -203,7 +220,6 @@ body {
   text-align: center;
   color: #8e5093;
   font-style: italic;
-  margin-top: 2.5rem;
   font-size: 1.5rem;
 }
 

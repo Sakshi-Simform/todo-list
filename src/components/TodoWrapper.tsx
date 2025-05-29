@@ -52,7 +52,9 @@ export default function TodoWrapper() {
         todo.id === id ? { ...todo, completed: !todo.completed } : todo
       )
     );
+    setFilter("all");
   };
+  
 
   const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
@@ -74,6 +76,7 @@ export default function TodoWrapper() {
 
   return (
     <div className="TodoWrapper">
+    <div className="fixed-header">
       <div className="header-search-wrapper">
         <h1>Task Manager</h1>
         <div className="header-right-wrapper">
@@ -84,7 +87,6 @@ export default function TodoWrapper() {
             value={searchTerm}
             onChange={handleSearch}
           />
-
           <select
             value={filter}
             onChange={handleFilter}
@@ -97,9 +99,10 @@ export default function TodoWrapper() {
           </select>
         </div>
       </div>
-
       <TodoForm addTodo={addTodo} />
+    </div>
 
+    <div className="task-scroll-area">
       {filteredTodos.length === 0 ? (
         <p className="empty-message">No Tasks</p>
       ) : (
@@ -118,5 +121,6 @@ export default function TodoWrapper() {
         )
       )}
     </div>
-  );
+  </div>
+);
 }
