@@ -5,10 +5,12 @@ import TodoForm from "./TodoForm";
 import { EditTodoForm } from "./EditForm";
 import type { TodoItem } from "../types/todo.types";
 
+type Status = "all" | "completed" | "incompleted";
+
 export default function TodoWrapper() {
   const [todos, setTodos] = useState<Array<TodoItem>>([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const [filter, setFilter] = useState<"all" | "completed" | "incompleted">("all");
+  const [filter, setFilter] = useState<Status>("all");
 
   const addTodo = (todo: string): void => {
     setTodos([
@@ -57,7 +59,7 @@ export default function TodoWrapper() {
   };
 
   const handleFilter = (e: ChangeEvent<HTMLSelectElement>) => {
-    setFilter(e.target.value as "all" | "completed" | "incompleted");
+    setFilter(e.target.value as Status);
   };
 
   const filteredTodos = todos
