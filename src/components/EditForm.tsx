@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import type { FormEvent, ChangeEvent } from 'react';
+import type { FormEvent} from 'react';
 import type { TodoItem } from '@/types/todo.types';
 
 interface EditTodoFormProps {
@@ -14,18 +14,14 @@ export const EditTodoForm: React.FC<EditTodoFormProps> = ({ editTodo, task }) =>
     e.preventDefault();
     editTodo(value.trim(), task.id);
   };
-
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setValue(e.target.value);
-  };
-
+  
   return (
     <form onSubmit={handleSubmit} className="TodoForm">
       <div className="input-wrapper">
         <input
          type='text'
           value={value}
-          onChange={handleChange}
+          onChange={(e) => setValue(e.target.value)}
           className="todo-update"
           placeholder="Update Task..."
         />
