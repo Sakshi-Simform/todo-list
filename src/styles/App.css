@@ -94,9 +94,41 @@ body {
   margin: 0;
   white-space: normal;
   word-wrap: break-word;
-  overflow-wrap: break-word;
-  width: 30rem;
-  flex-grow: 1;
+  overflow: hidden;
+  width: 20rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; 
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  transition: max-height 0.3s ease;
+  max-height: 4.5em; 
+  cursor: pointer;
+  width: 35rem;
+}
+
+.Todo p:hover {
+  -webkit-line-clamp: unset;
+  max-height: none;
+  overflow: visible;
+  white-space: normal;
+}
+.editdelete-icon{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+}
+
+.Todo {
+  display: flex;
+  align-items: center;
+  background: var(--secondry-color);
+  color: var(--white-color);
+  padding: 0.75rem 1rem;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+  gap: 1rem;
+
 }
 
 .todo-update {
@@ -127,17 +159,6 @@ body {
 
 .todo-btn:hover{
   background-color: #764278;
-}
-
-.Todo {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: var(--secondry-color);
-  color: var(--white-color);
-  padding: 0.75rem 1rem;
-  border-radius: 5px;
-  margin-bottom: 1rem;
 }
 
 .fa-trash {
