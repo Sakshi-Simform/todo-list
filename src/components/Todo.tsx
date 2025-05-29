@@ -16,6 +16,7 @@ export const Todo: React.FC<TodoProps> = ({ task, deleteTodo, editTodo, toggleCo
       {/*Checkbox to toggle completed */}
       <input
         type="checkbox"
+        className='checkbox'
         checked={task.completed}
         onChange={() => toggleComplete(task.id)}
         aria-label={`Mark task "${task.task}" as completed`}
