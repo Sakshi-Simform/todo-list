@@ -1,6 +1,5 @@
 import { useState } from "react";
 import type { ChangeEvent } from "react";
-import { v4 as uuidv4 } from "uuid";
 import { Todo } from "./Todo";
 import TodoForm from "./TodoForm";
 import { EditTodoForm } from "./EditForm";
@@ -15,7 +14,7 @@ export default function TodoWrapper() {
     setTodos([
       ...todos,
       {
-        id: uuidv4(),
+        id: crypto.randomUUID(),
         task: todo,
         completed: false,
         isEditing: false,
@@ -88,7 +87,6 @@ export default function TodoWrapper() {
             onChange={handleFilterChange}
             className="filter-dropdown"
             aria-label="Filter tasks"
-            style={{ marginLeft: "1rem", padding: "0.3rem 0.6rem", fontSize: "1rem" }}
           >
             <option value="all">All</option>
             <option value="completed">Completed</option>
