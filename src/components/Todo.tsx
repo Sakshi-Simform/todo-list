@@ -11,14 +11,15 @@ export interface TodoProps {
 
 export const Todo: React.FC<TodoProps> = ({ task, deleteTodo, editTodo, toggleComplete }) => {
   return (
-    <div className="Todo">
-      
-      {/*Checkbox to toggle completed */}
+    <div className="Todo" >
       <input
         type="checkbox"
-        className='checkbox'
+        className="checkbox"
         checked={task.completed}
-        onChange={() => toggleComplete(task.id)}
+        onChange={(e) => {
+          e.stopPropagation(); 
+          toggleComplete(task.id);
+        }}
         aria-label={`Mark task "${task.task}" as completed`}
       />
 
@@ -26,7 +27,7 @@ export const Todo: React.FC<TodoProps> = ({ task, deleteTodo, editTodo, toggleCo
         {task.task}
       </p>
 
-      <div>
+      <div className="editdelete-icon">
         {!task.completed && (
           <FontAwesomeIcon
             className="edit-icon"

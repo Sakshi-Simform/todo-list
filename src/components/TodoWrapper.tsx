@@ -54,7 +54,7 @@ export default function TodoWrapper() {
     );
     setFilter("all");
   };
-  
+
 
   const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
@@ -76,51 +76,51 @@ export default function TodoWrapper() {
 
   return (
     <div className="TodoWrapper">
-    <div className="fixed-header">
-      <div className="header-search-wrapper">
-        <h1>Task Manager</h1>
-        <div className="header-right-wrapper">
-          <input
-            type="text"
-            className="search-input"
-            placeholder="Search tasks..."
-            value={searchTerm}
-            onChange={handleSearch}
-          />
-          <select
-            value={filter}
-            onChange={handleFilter}
-            className="filter-dropdown"
-            aria-label="Filter tasks"
-          >
-            <option value="all">All</option>
-            <option value="completed">Completed</option>
-            <option value="incompleted">Incomplete</option>
-          </select>
-        </div>
-      </div>
-      <TodoForm addTodo={addTodo} />
-    </div>
-
-    <div className="task-scroll-area">
-      {filteredTodos.length === 0 ? (
-        <p className="empty-message">No Tasks</p>
-      ) : (
-        filteredTodos.map((todo) =>
-          todo.isEditing ? (
-            <EditTodoForm key={todo.id} editTodo={editTask} task={todo} />
-          ) : (
-            <Todo
-              key={todo.id}
-              task={todo}
-              deleteTodo={deleteTodo}
-              editTodo={editTodo}
-              toggleComplete={toggleComplete}
+      <div className="fixed-header">
+        <div className="header-search-wrapper">
+          <h1>Task Manager</h1>
+          <div className="header-right-wrapper">
+            <input
+              type="text"
+              className="search-input"
+              placeholder="Search tasks..."
+              value={searchTerm}
+              onChange={handleSearch}
             />
+            <select
+              value={filter}
+              onChange={handleFilter}
+              className="filter-dropdown"
+              aria-label="Filter tasks"
+            >
+              <option value="all">All</option>
+              <option value="completed">Completed</option>
+              <option value="incompleted">Incomplete</option>
+            </select>
+          </div>
+        </div>
+        <TodoForm addTodo={addTodo} />
+      </div>
+
+      <div className="task-scroll-area">
+        {filteredTodos.length === 0 ? (
+          <p className="empty-message">No Tasks</p>
+        ) : (
+          filteredTodos.map((todo) =>
+            todo.isEditing ? (
+              <EditTodoForm key={todo.id} editTodo={editTask} task={todo} />
+            ) : (
+              <Todo
+                key={todo.id}
+                task={todo}
+                deleteTodo={deleteTodo}
+                editTodo={editTodo}
+                toggleComplete={toggleComplete}
+              />
+            )
           )
-        )
-      )}
+        )}
+      </div>
     </div>
-  </div>
-);
+  );
 }
