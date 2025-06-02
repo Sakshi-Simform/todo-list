@@ -7,8 +7,8 @@ export interface TodoProps {
   deleteTodo: (id: string) => void;
   editTodo: (id: string) => void;
   toggleComplete: (id: string) => void;
-  // onChangeTask: (id: string, newTask: string) => void;
-  // onSaveEdit: (id: string) => void;
+  onChangeTask: (id: string, newTask: string) => void;
+  onSaveEdit: (id: string) => void;
 }
 
 export const Todo: React.FC<TodoProps> = ({
@@ -16,8 +16,8 @@ export const Todo: React.FC<TodoProps> = ({
   deleteTodo,
   editTodo,
   toggleComplete,
-  // onChangeTask,
- 
+  onChangeTask,
+  onSaveEdit,
 }) => {
   return (
     <div className="Todo">
@@ -33,12 +33,21 @@ export const Todo: React.FC<TodoProps> = ({
       />
 
       {task.isEditing ? (
-        <textarea
-          className="todo-update"
-          value={task.task}
-          onChange={(e) => onChangeTask(task.id, e.target.value)}
-        />
-        
+        <div className="edit-wrapper">
+          <textarea
+            className="todo-update"
+            value={task.task}
+            onChange={(e) => onChangeTask(task.id, e.target.value)}
+            onBlur={() => onSaveEdit(task.id)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" && !e.shiftKey) {
+                e.preventDefault();
+                onSaveEdit(task.id);
+              }
+            }}
+          />
+          <p className="warning-message">Press Enter or click outside to save changes.</p>
+        </div>
       ) : (
         <div className="tooltip-wrapper">
           <p className={task.completed ? "completed" : "incompleted"}>
