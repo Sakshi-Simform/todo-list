@@ -65,7 +65,7 @@ body {
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  padding: 0; 
+  padding: 0;
 }
 
 .fixed-header {
@@ -80,19 +80,19 @@ body {
 .task-scroll-area {
   overflow-y: auto;
   padding: 1.5rem 2rem;
-  flex-grow: 1; 
-  scrollbar-width: none; 
+  flex-grow: 1;
+  scrollbar-width: none;
   -ms-overflow-style: none;
 }
 
 .task-scroll-area::-webkit-scrollbar {
-  display: none; 
+  display: none;
 }
 
 .TodoForm {
   margin-bottom: 1rem;
   display: flex;
-  gap:1.3rem;
+  gap: 1.3rem;
   justify-content: center;
   flex-wrap: wrap;
 }
@@ -118,24 +118,17 @@ body {
   white-space: normal;
   word-wrap: break-word;
   overflow: hidden;
-  width: 20rem;
+  width: 32rem;
   display: -webkit-box;
-  -webkit-line-clamp: 2; 
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   text-overflow: ellipsis;
-  transition: max-height 0.3s ease;
-  max-height: 4.5em; 
-  cursor: pointer;
-  width: 35rem;
+  max-height: 4.5em;
+  cursor: default;
+  position: relative;
 }
 
-.Todo p:hover {
-  -webkit-line-clamp: unset;
-  max-height: none;
-  overflow: visible;
-  white-space: normal;
-}
-.editdelete-icon{
+.editdelete-icon {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -151,7 +144,6 @@ body {
   border-radius: 5px;
   margin-bottom: 1rem;
   gap: 1rem;
-
 }
 
 .todo-update {
@@ -163,11 +155,41 @@ body {
   border-radius: 4px;
   color: var(--white-color);
   font-size: 1rem;
-  height: 42px;
+  resize: none;
+  overflow: hidden;
   white-space: normal;
-  overflow: auto;
-  text-overflow: initial;
-  resize: vertical;
+  max-height: 6em;
+}
+
+.tooltip-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.tooltip-text {
+  visibility: hidden;
+  background-color: #333;
+  color: #fff;
+  padding: 0.4rem 0.6rem;
+  border-radius: 4px; 
+  position: absolute;
+  z-index: 10;
+  bottom: -100%;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  white-space: normal;
+  font-size: 0.85rem;
+  max-width: 400px;
+  word-wrap: break-word;
+  text-align: center;
+}
+
+.tooltip-wrapper:hover .tooltip-text{
+  visibility: visible;
+  opacity: 1;
 }
 
 .todo-btn {
@@ -180,7 +202,7 @@ body {
   font-size: 1rem;
 }
 
-.todo-btn:hover{
+.todo-btn:hover {
   background-color: #764278;
 }
 
@@ -229,8 +251,12 @@ body {
   font-size: 1.5rem;
 }
 
-.checkbox{
+.checkbox {
   margin-right: 1rem;
+}
+
+.warning-message{
+  color: var(--secondry-color);
 }
 
 @media (max-width: 768px) {
@@ -259,7 +285,8 @@ body {
     max-height: 70vh;
   }
 
-  .todo-input {
+  .todo-input,
+  .todo-update {
     width: 100%;
     max-width: 100%;
   }

@@ -12,7 +12,14 @@ export default function TodoWrapper() {
   const [searchTerm, setSearchTerm] = useState("");
   const [filter, setFilter] = useState<Filter>("all");
 
+  const isAnyEditing = todos.some((todo) => todo.isEditing);
+
   const addTodo = (todo: string): void => {
+    if (isAnyEditing) {
+      alert("Complete editing before entering new task.");
+      return;
+    }
+
     setTodos([
       ...todos,
       {
@@ -33,7 +40,7 @@ export default function TodoWrapper() {
       todos.map((todo) =>
         todo.id === id && !todo.completed
           ? { ...todo, isEditing: !todo.isEditing }
-          : todo
+          : { ...todo, isEditing: false }
       )
     );
   };
@@ -55,6 +62,21 @@ export default function TodoWrapper() {
     setFilter("all");
   };
 
+  const onChangeTask = (id: string, newTask: string) => {
+    setTodos(
+      todos.map(todo =>
+        todo.id === id ? { ...todo, task: newTask } : todo
+      )
+    );
+  };
+
+  const onSaveEdit = (id: string) => {
+    setTodos(
+      todos.map(todo =>
+        todo.id === id ? { ...todo, isEditing: false } : todo
+      )
+    );
+  };
 
   const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
@@ -99,7 +121,8 @@ export default function TodoWrapper() {
             </select>
           </div>
         </div>
-        <TodoForm addTodo={addTodo} />
+
+        <TodoForm addTodo={addTodo} isEditing={isAnyEditing} />
       </div>
 
       <div className="task-scroll-area">
@@ -116,6 +139,8 @@ export default function TodoWrapper() {
                 deleteTodo={deleteTodo}
                 editTodo={editTodo}
                 toggleComplete={toggleComplete}
+                onChangeTask={onChangeTask}
+                onSaveEdit={onSaveEdit}
               />
             )
           )
