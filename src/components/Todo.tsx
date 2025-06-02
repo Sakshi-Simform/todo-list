@@ -7,28 +7,51 @@ export interface TodoProps {
   deleteTodo: (id: string) => void;
   editTodo: (id: string) => void;
   toggleComplete: (id: string) => void;
+  // onChangeTask: (id: string, newTask: string) => void;
+  // onSaveEdit: (id: string) => void;
 }
 
-export const Todo: React.FC<TodoProps> = ({ task, deleteTodo, editTodo, toggleComplete }) => {
+export const Todo: React.FC<TodoProps> = ({
+  task,
+  deleteTodo,
+  editTodo,
+  toggleComplete,
+  // onChangeTask,
+ 
+}) => {
   return (
-    <div className="Todo" >
+    <div className="Todo">
       <input
         type="checkbox"
         className="checkbox"
         checked={task.completed}
         onChange={(e) => {
-          e.stopPropagation(); 
+          e.stopPropagation();
           toggleComplete(task.id);
         }}
         aria-label={`Mark task "${task.task}" as completed`}
       />
 
-      <p className={task.completed ? "completed" : "incompleted"}>
-        {task.task}
-      </p>
+      {task.isEditing ? (
+        <textarea
+          className="todo-update"
+          value={task.task}
+          onChange={(e) => onChangeTask(task.id, e.target.value)}
+        />
+        
+      ) : (
+        <div className="tooltip-wrapper">
+          <p className={task.completed ? "completed" : "incompleted"}>
+            {task.task}
+          </p>
+          {task.task.length > 30 && (
+            <span className="tooltip-text">{task.task}</span>
+          )}
+        </div>
+      )}
 
       <div className="editdelete-icon">
-        {!task.completed && (
+        {!task.completed && !task.isEditing && (
           <FontAwesomeIcon
             className="edit-icon"
             icon={faPenToSquare}
