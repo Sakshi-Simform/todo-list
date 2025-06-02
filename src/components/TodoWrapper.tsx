@@ -100,7 +100,7 @@ export default function TodoWrapper() {
     <div className="TodoWrapper">
       <div className="fixed-header">
         <div className="header-search-wrapper">
-          <h1>Task Manager</h1>
+          <h1 tabIndex={0}>Task Manager</h1>
           <div className="header-right-wrapper">
             <input
               type="text"
