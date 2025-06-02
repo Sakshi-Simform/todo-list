@@ -27,24 +27,24 @@ export default function TodoForm({ addTodo, isEditing }: TodoFormProps) {
         }
         disabled={isEditing}
       />
-    <button
-  type="submit"
-  className="todo-btn"
-  tabIndex={0}
-  aria-disabled={isEditing || !value.trim()}
-  onClick={(e) => {
-    if (isEditing || !value.trim()) {
-      e.preventDefault();
-      return;
-    }
-  }}
->
-  Add Task
-</button>
+      <button
+        type="submit"
+        className="todo-btn"
+        tabIndex={0}
+        aria-disabled={isEditing || !value.trim()}
+        onClick={(e) => {
+          if (isEditing || !value.trim()) {
+          e.preventDefault();
+          return;
+          }
+        }}
+      >
+      Add Task
+      </button>
 
       {isEditing && (
         <div className="warning-message">
-         Complete editing before adding a new task.
+          Complete editing before adding a new task.
         </div>
       )}
     </form>
