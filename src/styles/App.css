@@ -183,8 +183,16 @@ body {
   white-space: normal;
   font-size: 0.85rem;
   max-width: 400px;
+  max-height: 200px;
+  overflow-y: auto;
   word-wrap: break-word;
   text-align: center;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.tooltip-text::-webkit-scrollbar {
+  display: none;
 }
 
 .tooltip-wrapper:hover .tooltip-text{
