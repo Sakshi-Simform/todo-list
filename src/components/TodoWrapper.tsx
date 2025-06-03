@@ -12,10 +12,10 @@ export default function TodoWrapper() {
   const [searchTerm, setSearchTerm] = useState("");
   const [filter, setFilter] = useState<Filter>("all");
 
-  const isAnyEditing = todos.some((todo) => todo.isEditing);
+  const isEditingTask = todos.some((todo) => todo.isEditing);
 
   const addTodo = (todo: string): void => {
-    if (isAnyEditing) {
+    if (isEditingTask) {
       alert("Complete editing before entering new task.");
       return;
     }
@@ -122,7 +122,7 @@ export default function TodoWrapper() {
           </div>
         </div>
 
-        <TodoForm addTodo={addTodo} isEditing={isAnyEditing} />
+        <TodoForm addTodo={addTodo} isEditing={isEditingTask} />
       </div>
 
       <div className="task-scroll-area">
