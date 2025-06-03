@@ -61,7 +61,7 @@ body {
   box-shadow: 0 0 1.0714rem rgba(0, 0, 0, 0.1);
   width: 90vw;
   max-width: 52rem;
-  height: 18rem;
+  height: 34rem;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -256,6 +256,7 @@ body {
   color: #8e5093;
   font-style: italic;
   font-size: 1.5rem;
+  margin-top: 8rem;
 }
 
 .checkbox {
