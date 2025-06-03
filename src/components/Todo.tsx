@@ -4,7 +4,7 @@ import type { TodoItem } from '../types/todo.types';
 
 export interface TodoProps {
   task: TodoItem;
-  deleteTodo: (id: string) => void;
+  onDeleteTodo: (id: string) => void;
   editTodo: (id: string) => void;
   toggleComplete: (id: string) => void;
   onChangeTask: (id: string, newTask: string) => void;
@@ -13,7 +13,7 @@ export interface TodoProps {
 
 export const Todo: React.FC<TodoProps> = ({
   task,
-  deleteTodo,
+  onDeleteTodo,
   editTodo,
   toggleComplete,
   onChangeTask,
@@ -71,7 +71,7 @@ export const Todo: React.FC<TodoProps> = ({
         <FontAwesomeIcon
           className="delete-icon"
           icon={faTrash}
-          onClick={() => deleteTodo(task.id)}
+          onClick={() => onDeleteTodo(task.id)}
           style={{ cursor: "pointer" }}
         />
       </div>

@@ -136,7 +136,7 @@ export default function TodoWrapper() {
               <Todo
                 key={todo.id}
                 task={todo}
-                deleteTodo={deleteTodo}
+                onDeleteTodo={deleteTodo}
                 editTodo={editTodo}
                 toggleComplete={toggleComplete}
                 onChangeTask={onChangeTask}
