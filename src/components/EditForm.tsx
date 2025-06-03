@@ -3,17 +3,17 @@ import type { FormEvent } from 'react';
 import type { TodoItem } from '@/types/todo.types';
 
 interface EditTodoFormProps {
-  editTodo: (updatedTask: string, id: string) => void;
+  onEditTodo: (updatedTask: string, id: string) => void;
   task: TodoItem;
 }
 
-export const EditTodoForm: React.FC<EditTodoFormProps> = ({ editTodo, task }) => {
+export const EditTodoForm: React.FC<EditTodoFormProps> = ({  onEditTodo, task }) => {
   const [value, setValue] = useState<string>(task.task);
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!value.trim()) return;
-    editTodo(value.trim(), task.id);
+    onEditTodo(value.trim(), task.id);
   };
 
   return (

@@ -131,7 +131,7 @@ export default function TodoWrapper() {
         ) : (
           filteredTodos.map((todo) =>
             todo.isEditing ? (
-              <EditTodoForm key={todo.id} editTodo={editTask} task={todo} />
+              <EditTodoForm key={todo.id}  onEditTodo={editTask} task={todo} />
             ) : (
               <Todo
                 key={todo.id}
