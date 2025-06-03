@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import type { ChangeEvent } from "react";
 import { Todo } from "./Todo";
 import TodoForm from "./TodoForm";
@@ -12,6 +12,7 @@ import {
   toggleTaskComplete,
   changeTaskText,
   saveEditMode,
+  cancelEditMode
 } from "../utils/todo";
 
 type Filter = "all" | "completed" | "incompleted";
@@ -62,6 +63,24 @@ export default function TodoWrapper() {
   const handleFilter = (e: ChangeEvent<HTMLSelectElement>): void => {
     setFilter(e.target.value as Filter);
   };
+
+  const cancelEdit = (id: string): void => {
+    setTodos(cancelEditMode(todos, id));
+  };
+
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        const editingTask = todos.find((t) => t.isEditing);
+        if (editingTask) {
+          setTodos(cancelEditMode(todos, editingTask.id));
+        }
+      }
+    };
+
+    window.addEventListener("keydown", handleEscape);
+    return () => window.removeEventListener("keydown", handleEscape);
+  }, [todos]);
 
   const filteredTodos = todos
     .filter((todo) => {
@@ -122,6 +141,7 @@ export default function TodoWrapper() {
                 toggleComplete={toggleComplete}
                 onChangeTask={onChangeTask}
                 onSaveEdit={onSaveEdit}
+                onCancelEdit={cancelEdit}
               />
             )
           )

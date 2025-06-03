@@ -3,4 +3,5 @@ export interface TodoItem {
   task: string;
   completed: boolean;
   isEditing: boolean;
+  originalTask?: string;
 }

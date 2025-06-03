@@ -16,11 +16,19 @@ export const deleteTodoById = (todos: TodoItem[], id: string): TodoItem[] =>
     todos.filter((todo) => todo.id !== id);
 
 export const toggleEditMode = (todos: TodoItem[], id: string): TodoItem[] =>
-    todos.map((todo) =>
-        todo.id === id && !todo.completed
-            ? { ...todo, isEditing: !todo.isEditing }
-            : { ...todo, isEditing: false }
-    );
+    todos.map((todo) => {
+        if (todo.id === id && !todo.completed) {
+            return {
+                ...todo,
+                isEditing: !todo.isEditing,
+                originalTask: todo.originalTask ?? todo.task,
+            };
+        }
+        return {
+            ...todo,
+            isEditing: false,
+        };
+    });
 
 export const updateTask = (
     todos: TodoItem[],
@@ -48,4 +56,18 @@ export const changeTaskText = (
 export const saveEditMode = (todos: TodoItem[], id: string): TodoItem[] =>
     todos.map((todo) =>
         todo.id === id ? { ...todo, isEditing: false } : todo
+    );
+
+export const cancelEditMode = (todos: TodoItem[], id: string): TodoItem[] =>
+
+    todos.map((todo) =>
+
+        todo.id === id
+            ? {
+                ...todo,
+                task: todo.originalTask || todo.task,
+                isEditing: false,
+                originalTask: undefined,
+            }
+            : todo,
     );

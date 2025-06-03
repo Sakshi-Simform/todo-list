@@ -9,6 +9,7 @@ export interface TodoProps {
   toggleComplete: (id: string) => void;
   onChangeTask: (id: string, newTask: string) => void;
   onSaveEdit: (id: string) => void;
+  onCancelEdit: (id: string) => void;
 }
 
 export const Todo: React.FC<TodoProps> = ({
@@ -19,6 +20,7 @@ export const Todo: React.FC<TodoProps> = ({
   onChangeTask,
   onSaveEdit,
 }) => {
+
   return (
     <div className="Todo">
       <input
@@ -37,16 +39,18 @@ export const Todo: React.FC<TodoProps> = ({
           <textarea
             className="todo-update"
             value={task.task}
+            autoFocus
             onChange={(e) => onChangeTask(task.id, e.target.value)}
-            onBlur={() => onSaveEdit(task.id)}
+
             onKeyDown={(e) => {
-              if (e.key === "Enter" && !e.shiftKey) {
+              if (e.key === 'Enter' && !e.shiftKey) {
                 e.preventDefault();
                 onSaveEdit(task.id);
               }
             }}
+
           />
-          <p className="warning-message">Press Enter or click outside to save changes.</p>
+          <p className="warning-message">Press Enter or Escape to save changes.</p>
         </div>
       ) : (
         <div className="tooltip-wrapper">
@@ -64,7 +68,9 @@ export const Todo: React.FC<TodoProps> = ({
           <FontAwesomeIcon
             className="edit-icon"
             icon={faPenToSquare}
-            onClick={() => editTodo(task.id)}
+            onClick={() => {
+              editTodo(task.id);
+            }}
             style={{ cursor: "pointer", marginRight: "10px" }}
           />
         )}
