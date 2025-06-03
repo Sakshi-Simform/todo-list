@@ -4,6 +4,15 @@ import { Todo } from "./Todo";
 import TodoForm from "./TodoForm";
 import { EditTodoForm } from "./EditForm";
 import type { TodoItem } from "../types/todo.types";
+import {
+  addNewTodo,
+  deleteTodoById,
+  toggleEditMode,
+  updateTask,
+  toggleTaskComplete,
+  changeTaskText,
+  saveEditMode,
+} from "../utils/todo";
 
 type Filter = "all" | "completed" | "incompleted";
 
@@ -14,75 +23,44 @@ export default function TodoWrapper() {
 
   const isEditingTask = todos.some((todo) => todo.isEditing);
 
-  const addTodo = (todo: string): void => {
+  const addTodo = (task: string): void => {
     if (isEditingTask) {
       alert("Complete editing before entering new task.");
       return;
     }
-
-    setTodos([
-      ...todos,
-      {
-        id: crypto.randomUUID(),
-        task: todo,
-        completed: false,
-        isEditing: false,
-      },
-    ]);
+    setTodos(addNewTodo(todos, task));
   };
 
   const deleteTodo = (id: string): void => {
-    setTodos(todos.filter((todo) => todo.id !== id));
+    setTodos(deleteTodoById(todos, id));
   };
 
   const editTodo = (id: string): void => {
-    setTodos(
-      todos.map((todo) =>
-        todo.id === id && !todo.completed
-          ? { ...todo, isEditing: !todo.isEditing }
-          : { ...todo, isEditing: false }
-      )
-    );
+    setTodos(toggleEditMode(todos, id));
   };
 
   const editTask = (task: string, id: string): void => {
-    setTodos(
-      todos.map((todo) =>
-        todo.id === id ? { ...todo, task, isEditing: false } : todo
-      )
-    );
+    setTodos(updateTask(todos, id, task));
   };
 
   const toggleComplete = (id: string): void => {
-    setTodos(
-      todos.map((todo) =>
-        todo.id === id ? { ...todo, completed: !todo.completed } : todo
-      )
-    );
+    setTodos(toggleTaskComplete(todos, id));
     setFilter("all");
   };
 
-  const onChangeTask = (id: string, newTask: string) => {
-    setTodos(
-      todos.map(todo =>
-        todo.id === id ? { ...todo, task: newTask } : todo
-      )
-    );
+  const onChangeTask = (id: string, newTask: string): void => {
+    setTodos(changeTaskText(todos, id, newTask));
   };
 
-  const onSaveEdit = (id: string) => {
-    setTodos(
-      todos.map(todo =>
-        todo.id === id ? { ...todo, isEditing: false } : todo
-      )
-    );
+  const onSaveEdit = (id: string): void => {
+    setTodos(saveEditMode(todos, id));
   };
 
-  const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleSearch = (e: ChangeEvent<HTMLInputElement>): void => {
     setSearchTerm(e.target.value);
   };
 
-  const handleFilter = (e: ChangeEvent<HTMLSelectElement>) => {
+  const handleFilter = (e: ChangeEvent<HTMLSelectElement>): void => {
     setFilter(e.target.value as Filter);
   };
 
@@ -131,7 +109,11 @@ export default function TodoWrapper() {
         ) : (
           filteredTodos.map((todo) =>
             todo.isEditing ? (
-              <EditTodoForm key={todo.id}  onEditTodo={editTask} task={todo} />
+              <EditTodoForm
+                key={todo.id}
+                onEditTodo={editTask}
+                task={todo}
+              />
             ) : (
               <Todo
                 key={todo.id}
