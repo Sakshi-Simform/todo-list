@@ -45,7 +45,6 @@ export default function TodoWrapper() {
 
   const toggleComplete = (id: string): void => {
     setTodos(toggleTaskComplete(todos, id));
-    setFilter("all");
   };
 
   const onChangeTask = (id: string, newTask: string): void => {
