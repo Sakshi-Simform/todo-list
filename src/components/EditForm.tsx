@@ -12,7 +12,7 @@ export const EditTodoForm: React.FC<EditTodoFormProps> = ({  onEditTodo, task })
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!value.trim()) return;
+    if (!value.trim() || value.trim() === task.task.trim()) return;
     onEditTodo(value.trim(), task.id);
   };
 
