@@ -16,6 +16,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  color: var(--text-color);
 }
 
 .App {
@@ -31,7 +32,7 @@ body {
 
 .header-search-wrapper h1 {
   font-size: 2rem;
-  color: var(--secondry-color);
+  color: #8e5093;
   margin: 0;
   white-space: nowrap;
 }
@@ -48,11 +49,15 @@ body {
   padding: 0.75rem 1rem;
   font-size: 0.76rem;
   height: 35px;
-  border: 1px solid var(--secondry-color);
-  color: var(--white-color);
+  border: 1px solid var(--input-border);
+  color: var(--text-color);
   background: transparent;
   outline: none;
   border-radius: 4px;
+}
+
+.search-input::placeholder {
+  color: var(--gray-color);
 }
 
 .TodoWrapper {
@@ -66,6 +71,7 @@ body {
   flex-direction: column;
   overflow: hidden;
   padding: 0;
+  color: var(--text-color);
 }
 
 .fixed-header {
@@ -99,8 +105,8 @@ body {
 
 .todo-input {
   outline: none;
-  background: none;
-  border: 1px solid var(--secondry-color);
+  background: transparent;
+  border: 1px solid var(--input-border);
   padding: 0.5rem 1rem;
   color: var(--white-color);
   font-size: 1rem;
@@ -138,7 +144,7 @@ body {
 .Todo {
   display: flex;
   align-items: center;
-  background: var(--secondry-color);
+  background: #8e5093;
   color: var(--white-color);
   padding: 0.75rem 1rem;
   border-radius: 5px;
@@ -148,12 +154,12 @@ body {
 
 .todo-update {
   outline: none;
-  background: none;
-  border: 1px solid var(--secondry-color);
+  background: transparent;
+  border: 1px solid var(--input-border);
   padding: 0.5rem 1rem;
   width: 38rem;
   border-radius: 4px;
-  color: var(--white-color);
+  color: var(--text-color);
   font-size: 1rem;
   resize: none;
   overflow: hidden;
@@ -201,7 +207,7 @@ body {
 }
 
 .todo-btn {
-  background: var(--secondry-color);
+  background: var(--btn-bg);
   color: var(--white-color);
   border: none;
   padding: 0.5rem 1.5rem;
@@ -211,7 +217,7 @@ body {
 }
   
 .todo-btn:hover {
-  background-color: #764278;
+  background-color: var(--btn-hover-bg);
 }
 
 .fa-trash {
@@ -238,8 +244,8 @@ body {
 
 .filter-dropdown {
   background: transparent;
-  border: 1px solid var(--secondry-color);
-  color: var(--white-color);
+  border: 1px solid var(--input-border);
+  color: var(--filter-color);
   border-radius: 4px;
   cursor: pointer;
   margin-left: 1rem;
@@ -248,12 +254,13 @@ body {
 }
 
 .filter-dropdown option {
-  background-color: var(--primary-color);
+  background-color:var(--primary-color);
+  color: var(--text-color);
 }
 
 .empty-message {
   text-align: center;
-  color: #8e5093;
+  color:  #8e5093;
   font-style: italic;
   font-size: 1.5rem;
   margin-top: 8rem;
@@ -264,7 +271,7 @@ body {
 }
 
 .warning-message{
-  color: var(--secondry-color);
+  color: #8e5093;
 }
 
 @media (max-width: 768px) {
