@@ -1,5 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { Textarea } from './ui/textarea';
+import { Input } from './ui/input';
 import type { TodoItem } from '../types/todo.types';
 
 export interface TodoProps {
@@ -23,7 +25,7 @@ export const Todo: React.FC<TodoProps> = ({
 
   return (
     <div className="Todo">
-      <input
+      <Input
         type="checkbox"
         className="checkbox"
         checked={task.completed}
@@ -36,7 +38,7 @@ export const Todo: React.FC<TodoProps> = ({
 
       {task.isEditing ? (
         <div className="edit-wrapper">
-          <textarea
+          <Textarea
             className="todo-update"
             value={task.task}
             autoFocus

@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { Button } from "./ui/button";
+import { Input } from "./ui/input";
 
 interface TodoFormProps {
   addTodo: (task: string) => void;
@@ -17,7 +19,7 @@ export default function TodoForm({ addTodo, isEditing }: TodoFormProps) {
 
   return (
     <form onSubmit={handleSubmit} className="TodoForm">
-      <input
+      <Input
         type="text"
         value={value}
         onChange={(e) => setValue(e.target.value)}
@@ -27,7 +29,7 @@ export default function TodoForm({ addTodo, isEditing }: TodoFormProps) {
         }
         disabled={isEditing}
       />
-      <button
+      <Button
         type="submit"
         className="todo-btn"
         tabIndex={0}
@@ -40,7 +42,7 @@ export default function TodoForm({ addTodo, isEditing }: TodoFormProps) {
         }}
       >
       Add Task
-      </button>
+      </Button>
 
       {isEditing && (
         <div className="warning-message">

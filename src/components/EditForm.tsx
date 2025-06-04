@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import type { FormEvent } from 'react';
+import { Button } from './ui/button';
+import { Input } from './ui/input';
 import type { TodoItem } from '@/types/todo.types';
 
 interface EditTodoFormProps {
@@ -18,7 +20,7 @@ export const EditTodoForm: React.FC<EditTodoFormProps> = ({  onEditTodo, task })
 
   return (
     <form onSubmit={handleSubmit} className="TodoForm">
-      <input
+      <Input
         type="text"
         value={value}
         onChange={(e) => setValue(e.target.value)}
@@ -27,13 +29,13 @@ export const EditTodoForm: React.FC<EditTodoFormProps> = ({  onEditTodo, task })
         autoFocus
       />
 
-      <button
+      <Button
         type="submit"
         className="todo-btn"
         disabled={!value.trim()}
       >
         Save Task
-      </button>
+      </Button>
     </form>
   );
 };
