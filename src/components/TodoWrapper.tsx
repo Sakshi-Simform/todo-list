@@ -3,7 +3,7 @@ import type{ ChangeEvent } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FaSun, FaMoon } from "react-icons/fa";
 import { useTheme } from "@/components/Theme";
-import type { RootState, AppDispatch } from "./store/store"; 
+import type { RootState, AppDispatch } from "@/store/store"; 
 import {
   addTodo,
   deleteTodo,
@@ -13,12 +13,12 @@ import {
   changeTaskText,
   saveEditMode,
   cancelEditMode,
-} from "./store/TodoSlice";
+} from "@/store/TodoSlice";
 
-import { Todo } from "./Todo";
-import TodoForm from "./TodoForm";
-import { EditTodoForm } from "./EditForm";
-import { Input } from "./ui/input";
+import { Todo } from "@/components/Todo";
+import TodoForm from "@/components/TodoForm";
+import { EditTodoForm } from "@/components/EditForm";
+import { Input } from "@/components/ui/input";
 
 type Filter = "all" | "completed" | "incompleted";
 

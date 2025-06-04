@@ -1,8 +1,8 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
-import { Textarea } from './ui/textarea';
-import { Input } from './ui/input';
-import type { TodoItem } from '../types/todo.types';
+import { Textarea } from '@/components/ui/textarea';
+import { Input } from '@/components/ui/input';
+import type { TodoItem } from '@/types/todo.types';
 
 export interface TodoProps {
   task: TodoItem;

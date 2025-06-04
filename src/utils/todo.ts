@@ -1,4 +1,4 @@
-import type { TodoItem } from "../types/todo.types";
+import type { TodoItem } from "@/types/todo.types";
 
 export const addNewTodo = (todos: TodoItem[], task: string): TodoItem[] => {
     return [
