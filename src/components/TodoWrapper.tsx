@@ -2,7 +2,7 @@ import  { useState, useEffect } from "react";
 import type{ ChangeEvent } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FaSun, FaMoon } from "react-icons/fa";
-import { useTheme } from "../components/Theme";
+import { useTheme } from "@/components/Theme";
 import type { RootState, AppDispatch } from "./store/store"; 
 import {
   addTodo,
@@ -106,9 +106,6 @@ export default function TodoWrapper() {
         <div className="header-search-wrapper">
           <h1 tabIndex={0}>Task Manager</h1>
           <div className="header-right-wrapper">
-            <span onClick={toggleTheme} style={{ cursor: "pointer" }} aria-label="Toggle theme">
-              {theme === "light" ? <FaMoon /> : <FaSun />}
-            </span>
             <Input
               type="text"
               className="search-input"
@@ -127,6 +124,10 @@ export default function TodoWrapper() {
               <option value="completed">Completed</option>
               <option value="incompleted">Incomplete</option>
             </select> 
+
+            <span className="toggle-btn" onClick={toggleTheme} style={{ cursor: "pointer" }} aria-label="Toggle theme">
+              {theme === "light" ? <FaMoon /> : <FaSun />}
+            </span>
           </div> 
         </div>
 

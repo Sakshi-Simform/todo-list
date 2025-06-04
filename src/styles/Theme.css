@@ -10,6 +10,10 @@
     transition: color 0.3s ease;
 }
 
+.toggle-btn{
+    margin-left: 0.5rem;
+}
+
 .TodoWrapper.light .Todo {
     background-color: #e0dede;
     color: #000;
