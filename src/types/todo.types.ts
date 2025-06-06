@@ -5,3 +5,12 @@ export interface TodoItem {
   isEditing: boolean;
   originalTask?: string;
 }
+
+ export interface ThemeContextType {
+  theme: "light" | "dark";
+  toggleTheme: () => void;
+}
+
+export interface TodosState {
+  todos: Array<TodoItem>;
+}

@@ -5,3 +5,31 @@
     --gray-color: #ffffffa1;
     --black-color: #0a0a0a;
 }
+
+.TodoWrapper.dark {
+  --primary-color: #1b2e35;
+  --secondry-color: #333333;
+  --white-color: #f5f5f5;
+  --gray-color: #888888;
+  --text-color: #f5f5f5;
+  --input-bg: #2c2c2c;
+  --input-border: #555555;
+  --btn-bg: #8e5093;
+  --btn-hover-bg: #764278;
+  --filter-bg: #2c2c2c;
+  --filter-color: #f5f5f5;
+}
+
+.TodoWrapper.light {
+  --primary-color: #f5f5f5;
+  --secondry-color: #8e5093;
+  --white-color: #ffffff;
+  --gray-color: #666666;
+  --text-color: #000000;
+  --input-bg: #ffffff;
+  --input-border: #8e5093;
+  --btn-bg: #8e5093;
+  --btn-hover-bg: #764278;
+  --filter-bg: #ffffff;
+  --filter-color: #222222;
+}
