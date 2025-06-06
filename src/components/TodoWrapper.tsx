@@ -2,7 +2,7 @@ import  { useState, useEffect } from "react";
 import type{ ChangeEvent } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FaSun, FaMoon } from "react-icons/fa";
-import { useTheme } from "@/components/Theme";
+import { useTheme } from "@/hooks/useTheme";
 import type { RootState, AppDispatch } from "@/store/store"; 
 import {
   addTodo,
